@@ -1,14 +1,14 @@
-import streamlit as st
-import pandas as pd
-import requests
+#import streamlit as st
+#import pandas as pd
+#import requests
 #from bs4 import BeautifulSoup
 #import nltk
 #from wordcloud import WordCloud
 #import matplotlib.pyplot as plt
-from fpdf import FPDF
-import json
-from nltk.corpus import stopwords
-import base64
+#from fpdf import FPDF
+#import json
+#from nltk.corpus import stopwords
+#import base64
 from PIL import Image
 import datetime
 

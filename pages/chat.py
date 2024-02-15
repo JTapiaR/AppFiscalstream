@@ -3,21 +3,21 @@
 
 
 
-import streamlit as st
-import ast
-import pandas as pd
-import requests
+#import streamlit as st
+#import ast
+#import pandas as pd
+#import requests
 #import nltk
 #from wordcloud import WordCloud
 #import matplotlib.pyplot as plt
-from fpdf import FPDF
-import json
-from nltk.corpus import stopwords
-import base64
-from PIL import Image
-import datetime
-from openai import OpenAI
-from scipy import spatial
+#from fpdf import FPDF
+#mport json
+#from nltk.corpus import stopwords
+#import base64
+#from PIL import Image
+#import datetime
+#from openai import OpenAI
+#from scipy import spatial
 
 # Set OpenAI API key from Streamlit secrets
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])

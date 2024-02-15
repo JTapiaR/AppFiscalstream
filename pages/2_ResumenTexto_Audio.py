@@ -1,21 +1,21 @@
-import streamlit as st
-import pandas as pd
-import requests
+#import streamlit as st
+#import pandas as pd
+#import requests
 #from bs4 import BeautifulSoup
 #import nltk
 #from wordcloud import WordCloud
 #import matplotlib.pyplot as plt
-from fpdf import FPDF
-import json
-from nltk.corpus import stopwords
-import base64
-from PIL import Image
-import datetime
-from gtts import gTTS
-from io import BytesIO
-import nltk
-from nltk.tokenize import sent_tokenize
-nltk.download('punkt')
+#from fpdf import FPDF
+#import json
+#from nltk.corpus import stopwords
+#mport base64
+#from PIL import Image
+#import datetime
+#from gtts import gTTS
+#from io import BytesIO
+#import nltk
+#from nltk.tokenize import sent_tokenize
+#nltk.download('punkt')
 
 # Function to fetch and prepare data
 def fetch_and_prepare_data(url):
