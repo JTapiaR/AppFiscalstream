@@ -1,7 +1,6 @@
 #pip install openai streamlit
 #python -m pip install scipy
-#
-pip install beautifulsoup4 --upgrade
+
 
 
 import streamlit as st
