@@ -12,9 +12,11 @@
 from PIL import Image
 import datetime
 
+from openai import OpenAI
+import streamlit as st
 
 # Ensure you have downloaded the stopwords
-nltk.download('stopwords')
+#nltk.download('stopwords')
 
 # Set of Spanish stopwords
 stopwords_es = set(stopwords.words('spanish'))

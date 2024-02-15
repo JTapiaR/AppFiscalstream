@@ -16,6 +16,8 @@
 #import nltk
 #from nltk.tokenize import sent_tokenize
 #nltk.download('punkt')
+from openai import OpenAI
+import streamlit as st
 
 # Function to fetch and prepare data
 def fetch_and_prepare_data(url):

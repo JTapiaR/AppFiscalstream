@@ -17,6 +17,8 @@
 #from PIL import Image
 #import datetime
 #from openai import OpenAI
+from openai import OpenAI
+import streamlit as st
 #from scipy import spatial
 
 # Set OpenAI API key from Streamlit secrets
