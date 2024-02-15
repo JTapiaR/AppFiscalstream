@@ -1,10 +1,14 @@
 #pip install openai streamlit
 #python -m pip install scipy
 #
+pip install beautifulsoup4 --upgrade
+
+
 import streamlit as st
 import ast
 import pandas as pd
 import requests
+import bs4
 from bs4 import BeautifulSoup
 import nltk
 from wordcloud import WordCloud
