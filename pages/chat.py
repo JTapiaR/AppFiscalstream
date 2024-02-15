@@ -1,38 +1,75 @@
+import streamlit as st
+import pandas as pd
+import json
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import sent_tokenize
+from openai import OpenAI
+import ast
+nltk.download('punkt')
+
+# Asegúrate de configurar tus claves de API de OpenAI en `st.secrets`
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+
+
+def get_embedding(text, model="text-embedding-ada-002"):
+    text = text.replace("\n", " ")
+    response = client.embeddings.create(input=[text], model=model)
+    return response['data'][0]['embedding']
+
+def cosine_distance(v1, v2):
+    dot_product = sum(a*b for a, b in zip(v1, v2))
+    magnitude_v1 = sum(a*a for a in v1) ** 0.5
+    magnitude_v2 = sum(a*a for a in v2) ** 0.5
+    if magnitude_v1 == 0 or magnitude_v2 == 0:
+        return 1
+    return 1 - dot_product / (magnitude_v1 * magnitude_v2)
+
+def create_context(question, df):
+    q_embedding = get_embedding(question)
+    df['distance'] = df['embedding'].apply(lambda emb: cosine_distance(q_embedding, emb))
+    sorted_df = df.sort_values('distance')
+    relevant_tramites = sorted_df['Trámite'].unique()[:3]
+    return relevant_tramites
+
+
+
+
 #pip install openai streamlit
 #python -m pip install scipy
 
 
 
-import streamlit as st
-import ast
-import pandas as pd
-import requests
-import nltk
-from wordcloud import WordCloud
-import matplotlib.pyplot as plt
-from fpdf import FPDF
-import json
-from nltk.corpus import stopwords
-import base64
-from PIL import Image
-import datetime
-from openai import OpenAI
-from openai import OpenAI
-import streamlit as st
-from scipy import spatial
+#import streamlit as st
+#import ast
+#import pandas as pd
+#import requests
+#import nltk
+#from wordcloud import WordCloud
+#import matplotlib.pyplot as plt
+#from fpdf import FPDF
+#import json
+#from nltk.corpus import stopwords
+#import base64
+#from PIL import Image
+#import datetime
+#from openai import OpenAI
+#from openai import OpenAI
+#import streamlit as st
+#from scipy import spatial
 
 # Set OpenAI API key from Streamlit secrets
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+#client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
-nltk.download('punkt')
-from nltk.tokenize import sent_tokenize
+#nltk.download('punkt')
+#from nltk.tokenize import sent_tokenize
 
-def get_embedding(text, model="text-embedding-ada-002"):
-    text = text.replace("\n", " ")
-    return client.embeddings.create(input=[text], model=model).data[0].embedding
+#def get_embedding(text, model="text-embedding-ada-002"):
+#    text = text.replace("\n", " ")
+#    return client.embeddings.create(input=[text], model=model).data[0].embedding
 
-def calculate_cosine_distance(emb1, emb2):
-    return spatial.distance.cosine(emb1, emb2)
+#def calculate_cosine_distance(emb1, emb2):
+#    return spatial.distance.cosine(emb1, emb2)
 
 def create_context(question, df):
     q_embedding = get_embedding(question)
