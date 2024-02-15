@@ -7,7 +7,6 @@ import streamlit as st
 import ast
 import pandas as pd
 import requests
-from bs4 import BeautifulSoup
 import nltk
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
