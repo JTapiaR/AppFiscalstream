@@ -19,6 +19,7 @@ import datetime
 from openai import OpenAI
 from openai import OpenAI
 import streamlit as st
+import scipy
 from scipy import spatial
 
 # Set OpenAI API key from Streamlit secrets
