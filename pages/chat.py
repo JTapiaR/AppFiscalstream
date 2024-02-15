@@ -7,7 +7,7 @@ import streamlit as st
 import ast
 import pandas as pd
 import requests
-import nltk
+#import nltk
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from fpdf import FPDF
