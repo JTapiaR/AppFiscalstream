@@ -9,7 +9,7 @@ import pandas as pd
 import requests
 #import nltk
 #from wordcloud import WordCloud
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from fpdf import FPDF
 import json
 from nltk.corpus import stopwords
