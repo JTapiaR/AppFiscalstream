@@ -6,6 +6,8 @@ from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize
 from openai import OpenAI
 import ast
+import nltk
+
 nltk.download('punkt')
 
 # Asegúrate de configurar tus claves de API de OpenAI en `st.secrets`
