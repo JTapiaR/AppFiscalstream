@@ -16,7 +16,7 @@
 #import nltk
 #from nltk.tokenize import sent_tokenize
 #nltk.download('punkt')
-from openai import OpenAI
+#from openai import OpenAI
 import streamlit as st
 
 # Function to fetch and prepare data
@@ -114,5 +114,5 @@ def main():
 
 
 
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+#    main()

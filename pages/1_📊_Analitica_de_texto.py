@@ -12,8 +12,8 @@
 from PIL import Image
 import datetime
 
-from openai import OpenAI
-import streamlit as st
+#from openai import OpenAI
+#import streamlit as st
 
 # Ensure you have downloaded the stopwords
 #nltk.download('stopwords')
@@ -141,5 +141,5 @@ def main():
         st.pyplot(fig)  # Mostrar el gráfico en la aplicación Streamlit
 
 # Run the app
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+#    main()
