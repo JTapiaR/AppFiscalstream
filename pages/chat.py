@@ -99,8 +99,8 @@ def main():
     df['Pregunta_Completa'] = df2['Pregunta_Completa']
     df['Fundamento jurídico'] = df2['Fundamento jurídico']
 
-    df['embedding'] = df['embedding'].astype(str).apply(ast.literal_eval)
-    #df['embedding'] = df['embedding'].astype(str).apply(eval)
+     #df['embedding'] = df['embedding'].astype(str).apply(ast.literal_eval)
+    df['embedding'] = df['embedding'].astype(str).apply(eval)
     #df['embedding'] = df['embedding'].apply(lambda emb: json.loads(emb) if isinstance(emb, str) else emb)
 
     busqueda_opcion = st.radio("¿Cómo deseas buscar?", ('Por Fundamento Jurídico', 'Describir Trámite o Pregunta'))
