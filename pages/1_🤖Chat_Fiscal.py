@@ -36,7 +36,7 @@ def create_context(question, df):
     q_embedding = get_embedding(question)
     df['distance'] = df['embedding'].apply(lambda emb: cosine_distance(q_embedding, emb))
     sorted_df = df.sort_values('distance')
-    relevant_tramites = sorted_df['Trámite'].unique()[:3]
+    relevant_tramites = sorted_df['Trámite'].unique()[:5]
     return relevant_tramites
 
 
@@ -52,7 +52,7 @@ def create_context(question, df):
  #   relevant_tramites = sorted_df['Trámite'].unique()[:3]
  #   return relevant_tramites
 
-def build_context_for_selected_tramite(df, tramite_elegido, max_len=1800, pregunta=None):
+def build_context_for_selected_tramite(df, tramite_elegido, max_len=3000, pregunta=None):
     if pregunta:
         df_filtrado = df[(df['Trámite'] == tramite_elegido) & (df['Pregunta_Completa'] == pregunta)]
     else:
