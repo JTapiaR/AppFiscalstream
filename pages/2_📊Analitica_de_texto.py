@@ -108,7 +108,8 @@ def main():
         #st.write(st.session_state.df_extracted_data)
     # Select DEPENDENCIA
         # Permitir al usuario seleccionar una DEPENDENCIA
-    dependencia = st.selectbox("Selecciona una DEPENDENCIA:", options=['Todos'] + list(st.session_state.df_extracted_data['DEPENDENCIA'].unique()))
+    st.write("A continuación se muestran las Dependencias que publicaron en el DOF en la fecha seleccionada")    
+    dependencia = st.selectbox(" Por favor selecciona una DEPENDENCIA para ver los TÍTULOS de sus publicaciones:", options=['Todos'] + list(st.session_state.df_extracted_data['DEPENDENCIA'].unique()))
 
     if dependencia != 'Todos':
         # Filtrar DataFrame basado en la DEPENDENCIA seleccionada
@@ -117,7 +118,7 @@ def main():
         filtered_df = st.session_state.df_extracted_data
 
     # Permitir al usuario seleccionar uno o varios TÍTULOS de la dependencia seleccionada
-    selected_titulos = st.multiselect("Selecciona uno o más TÍTULOS:", options=filtered_df['TITULO'].unique())
+    selected_titulos = st.multiselect("Por favor selecciona uno o más TÍTULOS:", options=filtered_df['TITULO'].unique())
 
     if selected_titulos:
         # Mostrar TEXTONOTA de los títulos seleccionados
@@ -133,7 +134,7 @@ def main():
     #selected_textonota = filtered_df[filtered_df['TITULO'] == titulo]['TEXTONOTA'].iloc[0]
 
     # Button to generate visualization
-    if st.button("Visualizar TITULO"):
+    if st.button("Visualizar TITULO (S) seleccionados"):
         text = eliminar_stopwords(selected_textonota)
         wordcloud = WordCloud(width=800, height=400, background_color ='white', stopwords=stopwords_es).generate(text)
         plt.figure(figsize=(10, 5))

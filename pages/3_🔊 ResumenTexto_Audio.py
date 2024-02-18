@@ -93,14 +93,19 @@ def main():
         filtered_df = st.session_state.df_extracted_data
 
     # Permitir al usuario seleccionar uno o varios TÍTULOS de la dependencia seleccionada
-    selected_titulos = st.multiselect("Selecciona uno o más TÍTULOS:", options=filtered_df['TITULO'].unique())
+    selected_titulos = st.multiselect("Por favor selecciona uno o más TÍTULOS:", options=filtered_df['TITULO'].unique())
 
     if selected_titulos:
         # Mostrar TEXTONOTA de los títulos seleccionados
         for titulo in selected_titulos:
             selected_textonota = filtered_df[filtered_df['TITULO'] == titulo]['TEXTONOTA'].iloc[0]
+            parrafos = selected_textonota.split('\n\n')  
+            num_parrafos_mostrar = 2
+            resumen_texto = '\n\n'.join(parrafos[:num_parrafos_mostrar])
             st.write(f"Texto de '{titulo}':")
-            st.write(selected_textonota)
+            st.write(resumen_texto)
+            total_parrafos = len(parrafos)
+            st.write(f"Total de párrafos en la nota: {total_parrafos}")
     if st.button("Generar Resumen y Audio"):
     # Asume selected_textonota es el texto seleccionado por el usuario
       summary = summarize_text(selected_textonota)
