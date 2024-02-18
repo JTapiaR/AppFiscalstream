@@ -98,12 +98,12 @@ def main():
     #    st.session_state.df_extracted_data = fetch_and_prepare_data(url)
     #    add_text_to_df(st.session_state.df_extracted_data)  # Llamada a la función para añadir texto y título
     if 'df_extracted_data' not in st.session_state or st.button('Consultar DOF'):
-    st.session_state.df_extracted_data = fetch_and_prepare_data(url)
-    add_text_to_df(st.session_state.df_extracted_data)
-    fecha_formateada = fecha_seleccionada.strftime('%Y-%m-%d')
-    total_publicaciones = len(st.session_state.df_extracted_data)
-    st.write(f"Total de publicaciones en el DOF para {fecha_formateada}: {total_publicaciones}")
-    st.write(st.session_state.df_extracted_data)
+        st.session_state.df_extracted_data = fetch_and_prepare_data(url)
+        add_text_to_df(st.session_state.df_extracted_data)
+        fecha_formateada = fecha_seleccionada.strftime('%Y-%m-%d')
+        total_publicaciones = len(st.session_state.df_extracted_data)
+        st.write(f"Total de publicaciones en el DOF para {fecha_formateada}: {total_publicaciones}")
+        st.write(st.session_state.df_extracted_data)
     # Select DEPENDENCIA
         # Permitir al usuario seleccionar una DEPENDENCIA
     dependencia = st.selectbox("Selecciona una DEPENDENCIA:", options=['Todos'] + list(st.session_state.df_extracted_data['DEPENDENCIA'].unique()))
