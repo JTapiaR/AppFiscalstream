@@ -104,7 +104,8 @@ def main():
         total_publicaciones = len(st.session_state.df_extracted_data)
         st.write(f"Total de publicaciones en el DOF para {fecha_formateada}: {total_publicaciones}")
     else:
-        st.error("No hay publicaciones para la fecha seleccionada, por favor seleccione otra fecha")    
+        if len(st.session_state.df_extracted_data) == 0:
+            st.error("No hay publicaciones para la fecha seleccionada, por favor seleccione otra fecha")    
         #st.write(st.session_state.df_extracted_data)
     # Select DEPENDENCIA
         # Permitir al usuario seleccionar una DEPENDENCIA
@@ -124,8 +125,9 @@ def main():
         # Mostrar TEXTONOTA de los títulos seleccionados
         for titulo in selected_titulos:
             selected_textonota = filtered_df[filtered_df['TITULO'] == titulo]['TEXTONOTA'].iloc[0]
+            preview_text = selected_textonota[:1000]
             st.write(f"Texto de '{titulo}':")
-            st.write(selected_textonota)
+            st.write(preview_text + "...")
     
     # Select TITULO
     #titulo = st.selectbox("Selecciona un TITULO:", options=filtered_df['TITULO'])

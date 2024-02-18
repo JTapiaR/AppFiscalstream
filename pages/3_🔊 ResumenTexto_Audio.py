@@ -113,13 +113,14 @@ def main():
         # Mostrar TEXTONOTA de los títulos seleccionados
         for titulo in selected_titulos:
             selected_textonota = filtered_df[filtered_df['TITULO'] == titulo]['TEXTONOTA'].iloc[0]
-            parrafos = selected_textonota.split('\n\n')  
-            num_parrafos_mostrar = 2
-            resumen_texto = '\n\n'.join(parrafos[:num_parrafos_mostrar])
+            preview_text = selected_textonota[:500] 
+            #num_parrafos_mostrar = 2
+            #resumen_texto = '\n\n'.join(parrafos[:num_parrafos_mostrar])
             st.write(f"Texto de '{titulo}':")
-            st.write(resumen_texto)
-            total_parrafos = len(parrafos)
-            st.write(f"Total de párrafos en la nota: {total_parrafos}")
+            st.write(preview_text + "...")
+            #st.write(resumen_texto)
+            #total_parrafos = len(parrafos)
+            #st.write(f"Total de párrafos en la nota: {total_parrafos}")
     if st.button("Generar Resumen y Audio"):
     # Asume selected_textonota es el texto seleccionado por el usuario
       summary = summarize_text(selected_textonota)
