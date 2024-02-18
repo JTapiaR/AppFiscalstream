@@ -108,6 +108,7 @@ def main():
     if busqueda_opcion == 'Por Fundamento Jurídico':
         fundamentos_legales = df['Fundamento jurídico'].dropna().unique()
         fundamento_seleccionado = st.selectbox("Selecciona el fundamento legal de tu interés:", [''] + list(fundamentos_legales))
+        pass
 
         if fundamento_seleccionado:
             tramites_asociados = df[df['Fundamento jurídico'] == fundamento_seleccionado]['Trámite'].unique()
@@ -124,8 +125,13 @@ def main():
         preguntas_df = df[df['Trámite'] == selected_tramite]
         preguntas = preguntas_df['Pregunta_Completa'].dropna().unique()
         pregunta_seleccionada = st.selectbox("Selecciona una pregunta de tu interés o escribe una nueva abajo:", [''] + list(preguntas))
+
+        if pregunta_seleccionada == '':
+            nueva_pregunta = st.text_input("Ingresa tu nueva pregunta aquí:")
+        else:
+            nueva_pregunta = ''
         
-        nueva_pregunta = st.text_input("O ingresa tu nueva pregunta aquí:")
+        #nueva_pregunta = st.text_input("O ingresa tu nueva pregunta aquí:")
         
         if st.button("Obtener Respuesta"):
             pregunta_final = nueva_pregunta if nueva_pregunta else pregunta_seleccionada
