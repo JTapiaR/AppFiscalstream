@@ -54,7 +54,7 @@ def create_context(question, df):
 
 def build_context_for_selected_tramite(df, tramite_elegido, max_len=3000, pregunta=None):
     if pregunta:
-        df_filtrado = df[(df['Trámite'] == tramite_elegido) & (df['Pregunta_Completa'] == pregunta)]
+        df_filtrado = df[(df['Trámite'] == tramite_elegido) #& (df['Pregunta_Completa'] == pregunta)]
     else:
         df_filtrado = df[df['Trámite'] == tramite_elegido]
     context = ""
