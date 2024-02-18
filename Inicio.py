@@ -3,17 +3,28 @@ st.set_page_config(
     page_title="Inicio",
     page_icon="👋",
 )
-st.write("# Bienvenido a Analítica Boutique DOF! 👋")
+st.write("# Bienvenido a Analítica Boutique APPS! 👋")
 
-st.sidebar.success("Select a demo above.")
+st.sidebar.success("Selecciona un demo.")
 
 st.markdown(
     """
-    Nuestra app del DOF te permite consultar todas las publicaciones
-    realizadas en el Diario Oficial de la Federación (gaceta oficial
-    del Gobierno de México).
+    Nuestras apps te permiten  consultar diversos documentos útiles 
+    pra el trabajo cotidiano de profesionistas en Contabilidad, Derecho y
+    Administración. 
+
 
     **👈 Selecciona la aplicación de tu interés en el menú de la izquierda**
+
+    - ### 🤖	:page_facing_up: Chatbot Fiscal
+      -Selecciona la modalidad de búsqueda de tu trámite o servicio
+      Puedes realizar la búsqueda por el fundamento legal o describiendo
+      el trámite/servicio de tu interés.
+
+      -Selecciona la pregunta de tu  interés o ingresa una 
+      pregunta personalizada
+      
+      -Obten tu respuesta
 
     - ### 📊 Analítica de Texto
       -Elige la fecha del DOF que quieres consultar
@@ -29,10 +40,12 @@ st.markdown(
 
      -Transforma con IA el texto del resumen en audio
 
-    - ### ¿Tienes dudas o comentarios?
 
+     
+    - ### ¿Tienes dudas o comentarios?
+    
     - ### ¿Quieres implementar estas aplicaciones en tu negocio?
 
-     contactanos en bussinesanalitics@analiticaboutique.com
+     Contáctanos en vicente@analiticaboutique.com.mx
  """
 )
