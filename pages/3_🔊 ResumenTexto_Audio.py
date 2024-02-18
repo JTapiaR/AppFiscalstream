@@ -69,20 +69,27 @@ def main():
     st.header(':blue[Resúmenes de texto y audio]', divider='blue')
     st.subheader(':grey[ Resume las publicaciones del Diario OFicial de la Federación y transfórmalas, con IA,  a audio y más]', divider='blue')
     fecha_seleccionada = st.date_input("Selecciona una fecha", datetime.date.today())
-
+    dependencia = 'Todos'
     # Fetch data
     fecha_formateada = fecha_seleccionada.strftime('%d-%m-%Y')
     url = f"https://sidofqa.segob.gob.mx/dof/sidof/notas/{fecha_formateada}"
-    dependencia = 'Todos'  # 
     if 'df_extracted_data' not in st.session_state or st.button('Consultar DOF'):
         st.session_state.df_extracted_data = fetch_and_prepare_data(url)
         add_text_to_df(st.session_state.df_extracted_data)             
-        total_publicaciones = len(st.session_state.df_extracted_data)
-        st.write(f"Total de publicaciones en el DOF para {fecha_seleccionada.strftime('%Y-%m-%d')}: {total_publicaciones}")
-        if total_publicaciones > 0:  # Asegura que hay publicaciones para mostrar
-            dependencia = st.selectbox("Selecciona una DEPENDENCIA:", options=['Todos'] + list(st.session_state.df_extracted_data['DEPENDENCIA'].unique()))
+        if len(st.session_state.df_extracted_data) > 0:
+            st.write(f"Total de publicaciones en el DOF para {fecha_seleccionada.strftime('%Y-%m-%d')}: {len(st.session_state.df_extracted_data)}")
         else:
             st.error("No hay publicaciones para la fecha seleccionada, por favor seleccione otra fecha")
+        # Muestra el selectbox de dependencia independientemente de la carga de datos inicial
+    if 'df_extracted_data' in st.session_state and len(st.session_state.df_extracted_data) > 0:
+        dependencia = st.selectbox("Selecciona una DEPENDENCIA:", options=['Todos'] + list(st.session_state.df_extracted_data['DEPENDENCIA'].unique()))
+
+        #total_publicaciones = len(st.session_state.df_extracted_data)
+        
+        #if total_publicaciones > 0:  # Asegura que hay publicaciones para mostrar
+        #    dependencia = st.selectbox("Selecciona una DEPENDENCIA:", options=['Todos'] + list(st.session_state.df_extracted_data['DEPENDENCIA'].unique()))
+        #else:
+        #    st.error("No hay publicaciones para la fecha seleccionada, por favor seleccione otra fecha")
     
 
         #dependencia = st.selectbox("Selecciona una DEPENDENCIA:", options=['Todos'] + list(st.session_state.df_extracted_data['DEPENDENCIA'].unique()))
@@ -97,7 +104,7 @@ def main():
         # Filtrar DataFrame basado en la DEPENDENCIA seleccionada
         filtered_df = st.session_state.df_extracted_data[st.session_state.df_extracted_data['DEPENDENCIA'] == dependencia]
     else:
-        filtered_df = st.session_state.df_extracted_data
+        filtered_df = st.session_state.df_extracted_data if 'df_extracted_data' in st.session_state else pd.DataFrame()
 
     # Permitir al usuario seleccionar uno o varios TÍTULOS de la dependencia seleccionada
     selected_titulos = st.multiselect("Por favor selecciona uno o más TÍTULOS:", options=filtered_df['TITULO'].unique())
