@@ -73,15 +73,22 @@ def main():
     # Fetch data
     fecha_formateada = fecha_seleccionada.strftime('%d-%m-%Y')
     url = f"https://sidofqa.segob.gob.mx/dof/sidof/notas/{fecha_formateada}"
+    dependencia = 'Todos'  # 
     if 'df_extracted_data' not in st.session_state or st.button('Consultar DOF'):
         st.session_state.df_extracted_data = fetch_and_prepare_data(url)
         add_text_to_df(st.session_state.df_extracted_data)             
         total_publicaciones = len(st.session_state.df_extracted_data)
         st.write(f"Total de publicaciones en el DOF para {fecha_seleccionada.strftime('%Y-%m-%d')}: {total_publicaciones}")
-        dependencia = st.selectbox("Selecciona una DEPENDENCIA:", options=['Todos'] + list(st.session_state.df_extracted_data['DEPENDENCIA'].unique()))
+        if total_publicaciones > 0:  # Asegura que hay publicaciones para mostrar
+            dependencia = st.selectbox("Selecciona una DEPENDENCIA:", options=['Todos'] + list(st.session_state.df_extracted_data['DEPENDENCIA'].unique()))
+        else:
+            st.error("No hay publicaciones para la fecha seleccionada, por favor seleccione otra fecha")
+    
 
-    else:
-        st.error("No hay publicaciones para la fecha seleccionada, por favor seleccione otra fecha")
+        #dependencia = st.selectbox("Selecciona una DEPENDENCIA:", options=['Todos'] + list(st.session_state.df_extracted_data['DEPENDENCIA'].unique()))
+
+    #else:
+    #    st.error("No hay publicaciones para la fecha seleccionada, por favor seleccione otra fecha")
     # st.write(st.session_state.df_extracted_data)
     # Select DEPENDENCIA
         # Permitir al usuario seleccionar una DEPENDENCIA
@@ -119,7 +126,8 @@ def main():
     
     # Mostrar el widget de audio en Streamlit para reproducir el audio generado
       st.audio(audio.getvalue(), format='audio/mp3')
-
+    else:
+        st.error("Por favor selecciona al menos un título para generar el resumen y audio.")
 
 
 if __name__ == "__main__":
