@@ -54,7 +54,7 @@ def create_context(question, df):
 
 def build_context_for_selected_tramite(df, tramite_elegido, max_len=3000, pregunta=None):
     if pregunta:
-        df_filtrado = df[(df['Trámite'] == tramite_elegido) #& (df['Pregunta_Completa'] == pregunta)]
+        df_filtrado = df[(df['Trámite'] == tramite_elegido) & (df['Pregunta_Completa'] == pregunta)]
     else:
         df_filtrado = df[df['Trámite'] == tramite_elegido]
     context = ""
@@ -74,7 +74,7 @@ def answer_questions(questions, context="", model="gpt-3.5-turbo", max_tokens=30
             response = client.chat.completions.create(
                 model=model,
                 messages=[
-                    {"role": "system", "content": "Eres un especialista en temas fiscales en México. Vas a responder consultas sobre los trámites del anexo 1-A de la Resolución Miscelánea Fiscal 2023 de México responde de forma amable, si la respuesta consiste en múltiples pasos o documentos responde enlistando la información."},
+                    {"role": "system", "content": "Eres un especialista en temas fiscales en México. Vas a responder consultas sobre los trámites del anexo 1-A de la Resolución Miscelánea Fiscal 2023 de México responde de forma amable, si la respuesta consiste en múltiples pasos o documentos responde haciendo una lista de la información. Si el usuario ingreso texto en  Ingresa tu pregunta o describe el trámite que te interesa, responde basado en todos los embeddings del trámite seleccionado"},
                     {"role": "user", "content": f"Context: {context}\n\n---\n\nQuestion: {question}\nAnswer:"}
                 ],
                 temperature=0.5,
