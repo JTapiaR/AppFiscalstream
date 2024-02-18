@@ -103,7 +103,9 @@ def main():
         fecha_formateada = fecha_seleccionada.strftime('%Y-%m-%d')
         total_publicaciones = len(st.session_state.df_extracted_data)
         st.write(f"Total de publicaciones en el DOF para {fecha_formateada}: {total_publicaciones}")
-        st.write(st.session_state.df_extracted_data)
+    else:
+        st.error("No hay publicaciones para la fecha seleccionada, por favor seleccione otra fecha")    
+        #st.write(st.session_state.df_extracted_data)
     # Select DEPENDENCIA
         # Permitir al usuario seleccionar una DEPENDENCIA
     dependencia = st.selectbox("Selecciona una DEPENDENCIA:", options=['Todos'] + list(st.session_state.df_extracted_data['DEPENDENCIA'].unique()))
