@@ -65,10 +65,10 @@ def build_context_for_selected_tramite(df, tramite_elegido, max_len=3000):
  #   return relevant_tramites
 # Función para construir el contexto para un trámite seleccionado.
 #def build_context_for_selected_tramite(df, tramite_elegido, max_len=3000, pregunta=None):
-     # Filtra el DataFrame por trámite seleccionado, y opcionalmente por pregunta.
-    if pregunta:
-        df_filtrado = df[(df['Trámite'] == tramite_elegido) #& (df['Pregunta_Completa'] == pregunta)]
-    else:
+#    Filtra el DataFrame por trámite seleccionado, y opcionalmente por pregunta.
+#    if pregunta:
+#        df_filtrado = df[(df['Trámite'] == tramite_elegido) #& (df['Pregunta_Completa'] == pregunta)]
+#    else:
 #        df_filtrado = df[df['Trámite'] == tramite_elegido]
 #    context = "" # Inicializa el contexto como un string vacío.
 #    total_len = 0 # Inicializa el contador de longitud total del contexto.
