@@ -152,10 +152,11 @@ def main():
     #    preguntas_df = df[df['Trámite'] == selected_tramite]
     #    preguntas = preguntas_df['Pregunta_Completa'].dropna().unique()
     #    pregunta_seleccionada = st.selectbox("Selecciona una pregunta de tu interés:", [''] + list(preguntas))
-
-        #nueva_pregunta = st.text_input("Ingresa tu nueva pregunta aquí:")
+  
+        nueva_pregunta = "" #st.text_input("Ingresa tu nueva pregunta aquí:")
         if pregunta_seleccionada_index == -1:
             nueva_pregunta = st.text_input("Ingresa tu nueva pregunta aquí:", key='nueva_pregunta')
+            #nueva_pregunta = st.text_input("Ingresa tu nueva pregunta aquí:", key='nueva_pregunta')
 
         if st.button("Obtener Respuesta"):
             pregunta_final = nueva_pregunta if nueva_pregunta else pregunta_seleccionada
