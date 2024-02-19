@@ -65,8 +65,8 @@ def visualize_term_frequencies(text):
     # Preprocesamiento básico: dividir el texto en tokens y contar frecuencias
     tokens = text.split()
     
-    # Opcional: filtrar stopwords
-    # tokens = [token for token in tokens if token.lower() not in stop_words]
+    #Opcional: filtrar stopwords
+    tokens = [token for token in tokens if token.lower() not in stopwords_es]
     
     term_freq = pd.Series(tokens).value_counts().head(10)  # Top 10 términos más frecuentes
 
