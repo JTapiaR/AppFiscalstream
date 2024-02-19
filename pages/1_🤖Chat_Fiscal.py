@@ -146,7 +146,7 @@ def main():
         preguntas = preguntas_df['Pregunta_Completa'].dropna().unique()
         
         pregunta_seleccionada = st.selectbox("Selecciona una pregunta de tu interés:", [''] + list(preguntas), key='pregunta_seleccionada')        
-
+        pregunta_seleccionada_index = -1 if pregunta_seleccionada == '' else preguntas.tolist().index(pregunta_seleccionada)
     #if 'tramite_seleccionado' in locals() or 'tramite_elegido' in locals():
     #    selected_tramite = tramite_seleccionado if 'tramite_seleccionado' in locals() else tramite_elegido
     #    preguntas_df = df[df['Trámite'] == selected_tramite]
