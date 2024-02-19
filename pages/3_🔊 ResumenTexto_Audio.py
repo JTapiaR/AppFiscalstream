@@ -78,7 +78,7 @@ def main():
         add_text_to_df(st.session_state.df_extracted_data)             
         if len(st.session_state.df_extracted_data) > 0:
             #st.write(f"Total de publicaciones en el DOF para {fecha_seleccionada.strftime('%Y-%m-%d')}: {len(st.session_state.df_extracted_data)}")
-            st.markdown(f'<span style="color: red;">Total de publicaciones en el DOF para {fecha_seleccionada.strftime('%Y-%m-%d')}: {len(st.session_state.df_extracted_data)}</span>', unsafe_allow_html=True)
+            st.markdown(f"<span style='color: red;'>Total de publicaciones en el DOF para {fecha_seleccionada.strftime('%Y-%m-%d')}: {len(st.session_state.df_extracted_data)}</span>", unsafe_allow_html=True)
         else:
             st.error("No hay publicaciones para la fecha seleccionada, por favor seleccione otra fecha")
         # Muestra el selectbox de dependencia independientemente de la carga de datos inicial
