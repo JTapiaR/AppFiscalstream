@@ -125,12 +125,13 @@ def main():
     busqueda_opcion = st.radio("¿Cómo deseas buscar?", ('Por Fundamento Jurídico', 'Describir Trámite o Pregunta'))
 
     if busqueda_opcion == 'Por Fundamento Jurídico':
-        fundamentos_legales = df['Fundamento jurídico'].dropna().unique()
+        df_filterderogado = df[~df['Fundamento jurídico'].str.contains("Trámite derogado", na=False)]
+        fundamentos_legales = df_filterderogado['Fundamento jurídico'].dropna().unique()
         fundamento_seleccionado = st.selectbox("Selecciona el fundamento legal de tu interés:", [''] + list(fundamentos_legales))
         pass
 
         if fundamento_seleccionado:
-            tramites_asociados = df[df['Fundamento jurídico'] == fundamento_seleccionado]['Trámite'].unique()
+            tramites_asociados = df_filterderogado[df_filterderogado['Fundamento jurídico'] == fundamento_seleccionado]['Trámite'].unique()
             tramite_seleccionado = st.selectbox("Selecciona el trámite asociado:", [''] + list(tramites_asociados))
 
     else:
@@ -143,17 +144,32 @@ def main():
         selected_tramite = tramite_seleccionado if 'tramite_seleccionado' in locals() else tramite_elegido
         preguntas_df = df[df['Trámite'] == selected_tramite]
         preguntas = preguntas_df['Pregunta_Completa'].dropna().unique()
-        pregunta_seleccionada = st.selectbox("Selecciona una pregunta de tu interés:", [''] + list(preguntas))
+        
+        pregunta_seleccionada = st.selectbox("Selecciona una pregunta de tu interés:", [''] + list(preguntas), key='pregunta_seleccionada')        
+
+    #if 'tramite_seleccionado' in locals() or 'tramite_elegido' in locals():
+    #    selected_tramite = tramite_seleccionado if 'tramite_seleccionado' in locals() else tramite_elegido
+    #    preguntas_df = df[df['Trámite'] == selected_tramite]
+    #    preguntas = preguntas_df['Pregunta_Completa'].dropna().unique()
+    #    pregunta_seleccionada = st.selectbox("Selecciona una pregunta de tu interés:", [''] + list(preguntas))
 
         nueva_pregunta = st.text_input("Ingresa tu nueva pregunta aquí:")
+        if pregunta_seleccionada_index == -1:
+            nueva_pregunta = st.text_input("Ingresa tu nueva pregunta aquí:", key='nueva_pregunta')
 
         if st.button("Obtener Respuesta"):
             pregunta_final = nueva_pregunta if nueva_pregunta else pregunta_seleccionada
             if pregunta_final:
-                # Ahora se construye el contexto solo con el trámite seleccionado, sin considerar directamente la pregunta.
                 context = build_context_for_selected_tramite(df, selected_tramite)
                 response = answer_questions([pregunta_final], context=context)[0]
                 st.text_area("Respuesta:", value=response, height=150)
+        #if st.button("Obtener Respuesta"):
+        #    pregunta_final = nueva_pregunta if nueva_pregunta else pregunta_seleccionada
+        #    if pregunta_final:
+        #        # Ahora se construye el contexto solo con el trámite seleccionado, sin considerar directamente la pregunta.
+        #        context = build_context_for_selected_tramite(df, selected_tramite)
+        #        response = answer_questions([pregunta_final], context=context)[0]
+        #        st.text_area("Respuesta:", value=response, height=150)
 
     #if 'tramite_seleccionado' in locals() or 'tramite_elegido' in locals():
     #    selected_tramite = tramite_seleccionado if 'tramite_seleccionado' in locals() else tramite_elegido
