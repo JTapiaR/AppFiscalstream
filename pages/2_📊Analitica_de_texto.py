@@ -102,7 +102,8 @@ def main():
         add_text_to_df(st.session_state.df_extracted_data)
         fecha_formateada = fecha_seleccionada.strftime('%Y-%m-%d')
         total_publicaciones = len(st.session_state.df_extracted_data)
-        st.write(f"Total de publicaciones en el DOF para {fecha_formateada}: {total_publicaciones}")
+        st.markdown(f'<span style="color: red;">Total de publicaciones en el DOF para {fecha_formateada}: {total_publicaciones}</span>', unsafe_allow_html=True)
+        #st.write( :blue[f"Total de publicaciones en el DOF para {fecha_formateada}: {total_publicaciones}")
     else:
         if len(st.session_state.df_extracted_data) == 0:
             st.error("No hay publicaciones para la fecha seleccionada, por favor seleccione otra fecha")    
