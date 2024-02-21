@@ -83,7 +83,7 @@ def build_context_for_selected_tramite(df, tramite_elegido, max_len=3000):
 
 # Función para generar respuestas a preguntas utilizando el contexto y el modelo de OpenAI.
 
-def answer_questions(questions, context="", model="gpt-4", max_tokens=300):
+def answer_questions(questions, context="", model="gpt-4", max_tokens=500):
     responses = [] # Inicializa una lista para almacenar las respuestas.
     # Itera sobre cada pregunta para generar una respuesta.
     for question in questions:
