@@ -112,11 +112,11 @@ def answer_questions(questions, context="", model="gpt-4", max_tokens=300):
 def main():
     st.title("Asistente para Trámites Fiscales")
 
-    df = pd.read_csv("./data/tramitespreguntasEMBVFfundamento.csv")
+    df = pd.read_csv("./data/TODOStramitesembdf_modificadoVF.csv")
 
-    df2 = pd.read_csv("./data/tramitespreguntasEMBVFfundamentoVF.csv")
-    df['Pregunta_Completa'] = df2['Pregunta_Completa']
-    df['Fundamento jurídico'] = df2['Fundamento jurídico']
+    # df2 = pd.read_csv("./data/tramitespreguntasEMBVFfundamentoVF.csv")
+     #df['Pregunta_Completa'] = df2['Pregunta_Completa']
+     #df['Fundamento jurídico'] = df2['Fundamento jurídico']
 
      #df['embedding'] = df['embedding'].astype(str).apply(ast.literal_eval)
     df['embedding'] = df['embedding'].astype(str).apply(eval)
